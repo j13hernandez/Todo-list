@@ -1,24 +1,29 @@
-<%- include('header.ejs') -%>
+<%- include('partials/header.ejs') -%>
 
-<body>
-  <div class="box" id="heading">
-    <h1><%=listTitle%> To-do List</h1>
-  </div>
+<div class="box" id="heading">
+  <h1><%=listTitle%></h1>
+</div>
 
-  <div class="box">
-    <% newListItem.forEach(element => {%>
+<div class="box">
+  <% newListItem.forEach(element => {%>
+  <form action="/delete" method="post" class="checklist">
     <div class="item">
-      <input type="checkbox" />
-      <p><%=element%></p>
+      <input
+        type="checkbox"
+        name="checkbox"
+        value="<%=element._id%>"
+        onchange="this.form.submit()"
+      />
+      <p><%=element.name%></p>
     </div>
-    <% }); %>
+  </form>
+  <% }); %>
 
-    <form action="/" method="post" class="item">
-      <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required />
+  <form action="/" method="post" class="item">
+    <input type="text" name="newItem" placeholder="New Item" autocomplete="off" required />
 
-      <button type="submit" name="button" value="<%=listTitle%>">+</button>
-    </form>
-  </div>
-</body>
+    <button type="submit" name="button" value="<%=listTitle%>">+</button>
+  </form>
+</div>
 
-<%- include('footer.ejs') -%>
+<%- include('partials/footer.ejs') -%>

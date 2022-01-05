@@ -2,7 +2,7 @@ html {
   background-color: #e4e9fd;
   background-image: -webkit-linear-gradient(65deg, #a683e3 50%, #e4e9fd 50%);
   font-family: 'helvetica neue';
-  min-height: 1000px;
+  min-height: 100%;
 }
 
 h1 {
@@ -51,9 +51,13 @@ p {
   padding: 20px;
 }
 
-form {
+form.item {
   margin-left: 20px;
   text-align: center;
+}
+
+form.checklist {
+  border-bottom: #e4e9fd 1px solid;
 }
 
 button {
@@ -94,5 +98,9 @@ input[type='text']:focus {
 footer {
   color: white;
   color: rgba(0, 0, 0, 0.5);
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
 }
