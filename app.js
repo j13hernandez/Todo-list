@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const mongoose = require('mongoose');
 const _ = require('lodash');
-const uri = require('./secrets/mongoURI.js');
+// const uri = require('./secrets/mongoURI.js');
 
 const port = 3000;
 const date = require(__dirname + '/date.js');
@@ -13,10 +13,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-mongoose.connect(uri.uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  'mongodb+srv://palma:pubPass@cluster0.trvam.mongodb.net/todolistDB?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const workItems = [];
 
@@ -101,7 +104,9 @@ app.post('/delete', (req, res) => {
         console.log('Successfully deleted checked item');
       }
     });
-    res.redirect('/');
+    setTimeout(() => {
+      res.redirect('/');
+    }, 500);
   } else {
     List.findOneAndUpdate(
       { name: currentTitle },
