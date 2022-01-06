@@ -5,8 +5,11 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 // const uri = require('./secrets/mongoURI.js');
 
-const port = 3000;
 const date = require(__dirname + '/date.js');
+let port = process.env.PORT;
+if (port == null || port == '') {
+  port = 3000;
+}
 
 app.set('view engine', 'ejs');
 
